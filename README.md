@@ -12,10 +12,46 @@
 ---
 
 ### Задание 2
+На Мастер
+```conf
+[mysqld]
+pid-file             = /run/mysqld/mysqld.pid
+basedir              = /usr
+bind-address         = 0.0.0.0
+server-id            = 1
+log_bin              = /var/log/mysql/mysql-bin.log
+log_bin_index        = /var/log/mysql/mysql-bin.log.index
+relay_log            = /var/log/mysql/mysql-relay-bin
+relay_log_index      = /var/log/mysql/mysql-relay-bin.index
+expire_logs_days     = 10
+character-set-server = utf8mb4
+collation-server     = utf8mb4_general_ci
+```
 
+```sql
+MariaDB [(none)]> SHOW SLAVE STATUS \G;
+Empty set (0.000 sec)
+```
+
+На Slave
+```
+[mysqld]
+pid-file              = /run/mysqld/mysqld.pid
+basedir               = /usr
+bind-address          = 0.0.0.0
+server-id             = 2
+log_bin               = /var/log/mysql/mysql-bin.log
+log_bin_index         = /var/log/mysql/mysql-bin.log.index
+relay_log             = /var/log/mysql/mysql-relay-bin
+relay_log_index       = /var/log/mysql/mysql-relay-bin.index
+expire_logs_days      = 10
+character-set-server  = utf8mb4
+collation-server      = utf8mb4_general_ci
+```
 Выполните настройку репликации master-slave, которую можно использовать из лекции.
-![alt text](https://github.com/Wollfik/Myrepoz/blob/main/209431438-baddf84c-9a92-4224-954b-d78c65355edf.png)
-*Прилагаем эскизный план, выполнение работы: состояние и режимы работы серверов.*
+![alt text](https://github.com/Wollfik/Myrepoz/blob/main/Screenshot_2.png)
+![alt text](https://github.com/Wollfik/Myrepoz/blob/main/Screenshot_1.png)
+
 
 ---
 
